@@ -17,6 +17,7 @@ public class Main {
 
             while (s.hasNextLine()) {
                 String line = s.nextLine();
+                line = line.substring(0, line.indexOf("|"));
                 hand = line.split(",");
                 System.out.println(Arrays.toString(hand));
                 Classifier cardHand = new Classifier(hand);

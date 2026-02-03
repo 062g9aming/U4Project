@@ -1,6 +1,6 @@
-3,2,10,3,King
-10,5,5,Jack,5
-King,King,6,7,7
-King,10,Jack,Jack,10
-Queen,Queen,Queen,Jack,Ace
-King,King,King,King,King
+3,2,10,3,King|10
+10,5,5,Jack,5|10
+King,King,6,7,7|10
+King,10,Jack,Jack,10|10
+Queen,Queen,Queen,Jack,Ace|10
+King,King,King,King,King|10
