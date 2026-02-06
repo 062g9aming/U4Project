@@ -19,7 +19,6 @@ public class Main {
                 String line = s.nextLine();
                 line = line.substring(0, line.indexOf("|"));
                 hand = line.split(",");
-                System.out.println(Arrays.toString(hand));
                 Classifier1 cardHand = new Classifier1(hand);
             }
             Classifier1 getResult = new Classifier1();

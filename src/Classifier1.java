@@ -83,14 +83,12 @@ public class Classifier1 {
             }
         }
 
-
         //Check amount
         card1Instance += checkAmount(rawString,card1Type);
         card2Instance += checkAmount(rawString,card2Type);
         card3Instance += checkAmount(rawString,card3Type);
         card4Instance += checkAmount(rawString,card4Type);
         card5Instance += checkAmount(rawString,card5Type);
-
 
         boolean declared = false;
 
