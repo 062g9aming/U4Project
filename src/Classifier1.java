@@ -85,51 +85,11 @@ public class Classifier1 {
 
 
         //Check amount
-        i = 0;
-        while(i < rawString.length)
-        {
-            if (card1Type.equals(rawString[i]))
-            {
-                card1Instance++;
-            }
-            i++;
-        }
-        i = 0;
-        while(i < rawString.length)
-        {
-            if (card2Type.equals(rawString[i]))
-            {
-                card2Instance++;
-            }
-            i++;
-        }
-        i = 0;
-        while(i < rawString.length)
-        {
-            if (card3Type.equals(rawString[i]))
-            {
-                card3Instance++;
-            }
-            i++;
-        }
-        i = 0;
-        while(i < rawString.length)
-        {
-            if (card4Type.equals(rawString[i]))
-            {
-                card4Instance++;
-            }
-            i++;
-        }
-        i = 0;
-        while(i < rawString.length)
-        {
-            if (card5Type.equals(rawString[i]))
-            {
-                card5Instance++;
-            }
-            i++;
-        }
+        card1Instance += checkAmount(rawString,card1Type);
+        card2Instance += checkAmount(rawString,card2Type);
+        card3Instance += checkAmount(rawString,card3Type);
+        card4Instance += checkAmount(rawString,card4Type);
+        card5Instance += checkAmount(rawString,card5Type);
 
 
         boolean declared = false;
@@ -181,7 +141,6 @@ public class Classifier1 {
                     pairAmount++;
                 }
             }
-
             if (pairAmount == 0)
             {
                 highCard++;
@@ -214,5 +173,22 @@ public class Classifier1 {
                 "Number of one pair hands: " + onePair + "\n" +
                 "Number of high card hands: " + highCard);
     }
+
+
+    private int checkAmount(String[] rawString, String cardNType)
+    {
+        int addAmount = 0;
+        int i = 0;
+        while(i < rawString.length)
+        {
+            if (cardNType.equals(rawString[i]))
+            {
+                addAmount++;
+            }
+            i++;
+        }
+        return(addAmount);
+    }
+
 }
 
