@@ -20,8 +20,10 @@ public class Main {
                 line = line.substring(0, line.indexOf("|"));
                 hand = line.split(",");
                 System.out.println(Arrays.toString(hand));
-                Classifier cardHand = new Classifier(hand);
+                Classifier1 cardHand = new Classifier1(hand);
             }
+            Classifier1 getResult = new Classifier1();
+            getResult.getTypeAmount();
         }
         catch (FileNotFoundException e) {
             System.out.println("File not found");

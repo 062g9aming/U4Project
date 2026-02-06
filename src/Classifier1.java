@@ -20,6 +20,10 @@ public class Classifier1 {
     static int highCard = 0;
     private String handType;
 
+    public Classifier1()
+    {
+    }
+
     public Classifier1(String[] rawString)
     {
         card1Type = rawString[0];
@@ -152,7 +156,7 @@ public class Classifier1 {
             if (cardAmount[a] == 3)
             {
                 for (int b = 0; b < cardAmount.length && !declared; b++) {
-                    if (cardAmount[a] == 2)
+                    if (cardAmount[b] == 2)
                     {
                         declared = true;
                         fullHouse++;
@@ -160,9 +164,12 @@ public class Classifier1 {
                         break;
                     }
                 }
-                declared = true;
-                threeKind++;
-                handType = "threeKind";
+                if (!declared)
+                {
+                    declared = true;
+                    threeKind++;
+                    handType = "threeKind";
+                }
             }
         }
 
@@ -196,6 +203,16 @@ public class Classifier1 {
     public String getHandType()
     {
         return(handType);
+    }
+    public void getTypeAmount()
+    {
+        System.out.println("Number of five of a kind hands: " + fiveKind + "\n" +
+                "Number of full house hands: " + fullHouse + "\n" +
+                "Number of four of a kind hands: " + fourKind + "\n" +
+                "Number of three of a kind hands: " + threeKind + "\n" +
+                "Number of two pair hands: " + twoPair + "\n" +
+                "Number of one pair hands: " + onePair + "\n" +
+                "Number of high card hands: " + highCard);
     }
 }
 
