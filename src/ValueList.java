@@ -4,39 +4,20 @@ public class ValueList {
     private int competitorValue;
 
     public int evaluate(String[] valueOrder, String target, String competitor) {
-        for(int i = 0; i < valueOrder.length; i++)
+        for(int cardIndex = 0; cardIndex < 5; cardIndex++)
         {
-            for(int a = 0; a < target.length(); a++)
-            {
-                if(valueOrder[a].equals(target.charAt(a)))
-                {
-                    targetValue = a;
-                    break;
-                }
-            }
+            String targetLetter = String.valueOf(target.charAt(cardIndex));
+            String competitiorLetter = String.valueOf(competitor.charAt(cardIndex));
 
-            for(int a = 0; a < competitor.length(); a++)
+            for(int valueIndex = 0; valueIndex < valueOrder.length; valueIndex++)
             {
-                if(valueOrder[a].equals(competitor.charAt(a)))
+                if(valueOrder[valueIndex].equals(targetLetter))
                 {
-                    competitorValue = a;
-                    break;
-                }
-            }
-
-            if(targetValue != competitorValue)
-            {
-                if(targetValue > competitorValue)
-                {
-                    return(1);
+                    targetValue = valueIndex;
+                    System.out.println(targetValue);
                 }
             }
         }
         return(0);
     }
-
-    public void Valuelist()
-    {
-    }
-
 }

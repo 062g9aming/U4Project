@@ -25,6 +25,8 @@ public class Main2
 
             lines = fileData.split("\n");
 
+
+            //Helps break it to raw info
             int i =0;
             for (String line : lines){
                 bid = line.substring(line.indexOf("|") + 1);
@@ -38,16 +40,22 @@ public class Main2
             System.out.println(Arrays.toString(lines));
             String[] refinedID = lines;
 
+            //Helps compare and award points
             String[] part2Value = {"2", "3", "4", "5", "6", "7", "8", "9", "0", "J", "Q", "K", "A"};
-            for (int b = 0; b < part2Value.length; b++)
+            for (int b = 0; b < refinedID.length; b++)
             {
-                for (int c = 0; c < part2Value.length; c++)
+                int wins = 1;
+                for (int c = 0; c < refinedID.length; c++)
                 {
                     ValueList part2 = new ValueList();
-                    part2.evaluate(part2Value, refinedID[b], refinedID[c]);
+                    wins += part2.evaluate(part2Value, refinedID[b], refinedID[c]);
                 }
+                System.out.println(refinedID[b]);
+                System.out.println(wins);
             }
         }
+
+
         catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
