@@ -1,4 +1,4 @@
-public class Classifier2 {
+public class Classifier3 {
     String card1Type = "-";
     String card2Type = "-";
     String card3Type = "-";
@@ -10,6 +10,7 @@ public class Classifier2 {
     int card3Instance = 0;
     int card4Instance = 0;
     int card5Instance = 0;
+    int jackInstance = 0;
 
     static int fiveKind = 0;
     static int fourKind = 0;
@@ -20,13 +21,22 @@ public class Classifier2 {
     static int highCard = 0;
     private String handType;
 
-    public Classifier2(String[] rawString)
+    public Classifier3(String[] rawString)
     {
-        card1Type = rawString[0];
-        card1Instance = 0;
-
-        //Used to find different types amount
         int i = 0;
+        if (i < rawString.length)
+        {
+            while(i < rawString.length)
+            {
+                if (!rawString[i].equals("J"))
+                {
+                    card1Type = rawString[i];
+                    break;
+                }
+                i++;
+            }
+        }
+
         if (i < rawString.length)
         {
             while(i < rawString.length)
@@ -80,6 +90,7 @@ public class Classifier2 {
         }
 
 
+
         //Check amount
         i = 0;
         while(i < rawString.length)
@@ -126,6 +137,15 @@ public class Classifier2 {
             }
             i++;
         }
+        i = 0;
+        while(i < rawString.length)
+        {
+            if ("J".equals(rawString[i]))
+            {
+                jackInstance++;
+            }
+            i++;
+        }
 
 
         boolean declared = false;
@@ -133,7 +153,7 @@ public class Classifier2 {
         int[] cardAmount = {card1Instance, card2Instance, card3Instance, card4Instance, card5Instance};
 
         for (int a = 0; a < cardAmount.length && !declared; a++) {
-            if (cardAmount[a] == 5)
+            if (cardAmount[a] + jackInstance == 5)
             {
                 declared = true;
                 fiveKind++;
@@ -141,7 +161,7 @@ public class Classifier2 {
             }
         }
         for (int a = 0; a < cardAmount.length && !declared; a++) {
-            if (cardAmount[a] == 4)
+            if (cardAmount[a] + jackInstance == 4)
             {
                 declared = true;
                 fourKind++;
@@ -149,7 +169,7 @@ public class Classifier2 {
             }
         }
         for (int a = 0; a < cardAmount.length && !declared; a++) {
-            if (cardAmount[a] == 3)
+            if (cardAmount[a] + jackInstance == 3)
             {
                 for (int b = 0; b < cardAmount.length; b++) {
                     if (cardAmount[b] == 2)
@@ -173,7 +193,7 @@ public class Classifier2 {
         {
             int pairAmount = 0;
             for (int a = 0; a < cardAmount.length; a++) {
-                if (cardAmount[a] == 2) {
+                if (cardAmount[a] + jackInstance == 2) {
                     pairAmount++;
                 }
             }
