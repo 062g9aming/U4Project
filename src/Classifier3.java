@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Classifier3 {
     String card1Type = "-";
     String card2Type = "-";
@@ -5,12 +7,12 @@ public class Classifier3 {
     String card4Type = "-";
     String card5Type = "-";
 
+    int jackInstance = 0;
     int card1Instance = 0;
     int card2Instance = 0;
     int card3Instance = 0;
     int card4Instance = 0;
     int card5Instance = 0;
-    int jackInstance = 0;
 
     static int fiveKind = 0;
     static int fourKind = 0;
@@ -23,12 +25,16 @@ public class Classifier3 {
 
     public Classifier3(String[] rawString)
     {
+
+
+        //Used to find different types amount
         int i = 0;
+
         if (i < rawString.length)
         {
             while(i < rawString.length)
             {
-                if (!rawString[i].equals("J"))
+                if (!(rawString[i].equals("Jack")))
                 {
                     card1Type = rawString[i];
                     break;
@@ -37,11 +43,12 @@ public class Classifier3 {
             }
         }
 
+
         if (i < rawString.length)
         {
             while(i < rawString.length)
             {
-                if (!card1Type.equals((rawString[i])))
+                if (!card1Type.equals((rawString[i])) && !(rawString[i].equals("Jack")))
                 {
                     card2Type = rawString[i];
                     break;
@@ -54,7 +61,7 @@ public class Classifier3 {
         {
             while(i < rawString.length)
             {
-                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])))
+                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])) && !(rawString[i].equals("Jack")))
                 {
                     card3Type = rawString[i];
                     break;
@@ -67,7 +74,7 @@ public class Classifier3 {
         {
             while(i < rawString.length)
             {
-                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])) && !card3Type.equals((rawString[i])))
+                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])) && !card3Type.equals((rawString[i])) && !(rawString[i].equals("Jack")))
                 {
                     card4Type = rawString[i];
                     break;
@@ -80,7 +87,7 @@ public class Classifier3 {
         {
             while(i < rawString.length)
             {
-                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])) && !card3Type.equals((rawString[i])) && !card4Type.equals((rawString[i])))
+                if (!card1Type.equals((rawString[i])) && !card2Type.equals((rawString[i])) && !card3Type.equals((rawString[i])) && !card4Type.equals((rawString[i])) && !(rawString[i].equals("Jack")))
                 {
                     card5Type = rawString[i];
                     break;
@@ -137,20 +144,17 @@ public class Classifier3 {
             }
             i++;
         }
-        i = 0;
-        while(i < rawString.length)
-        {
-            if ("J".equals(rawString[i]))
-            {
-                jackInstance++;
-            }
-            i++;
-        }
-
 
         boolean declared = false;
 
         int[] cardAmount = {card1Instance, card2Instance, card3Instance, card4Instance, card5Instance};
+
+        jackInstance = 5;
+
+        for (int q = 0; q < cardAmount.length; q++)
+        {
+            jackInstance -= cardAmount[q];
+        }
 
         for (int a = 0; a < cardAmount.length && !declared; a++) {
             if (cardAmount[a] + jackInstance == 5)
@@ -168,11 +172,11 @@ public class Classifier3 {
                 handType = "6";
             }
         }
-        for (int a = 0; a < cardAmount.length && !declared; a++) {
+        for (int a = 0; a < cardAmount.length  && !declared; a++) {
             if (cardAmount[a] + jackInstance == 3)
             {
                 for (int b = 0; b < cardAmount.length; b++) {
-                    if (cardAmount[b] == 2)
+                    if ((b != a )&& (cardAmount[b] == 2))
                     {
                         declared = true;
                         fullHouse++;
@@ -195,6 +199,7 @@ public class Classifier3 {
             for (int a = 0; a < cardAmount.length; a++) {
                 if (cardAmount[a] + jackInstance == 2) {
                     pairAmount++;
+                    jackInstance = 0;
                 }
             }
 
@@ -215,6 +220,8 @@ public class Classifier3 {
             }
         }
     }
+
+
 
     public String getHandType()
     {
